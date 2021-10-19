@@ -45,7 +45,7 @@ public class BlogResource {
 
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public ResponseEntity<Blog> updateBlog(@RequestBody Blog blog) {
         Blog newBlog = blogService.updateBlogs(blog);
         return new ResponseEntity<>(newBlog, HttpStatus.OK);
