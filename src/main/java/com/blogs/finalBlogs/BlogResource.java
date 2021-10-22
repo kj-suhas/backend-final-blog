@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/blog")
+// http://localhost:8080/blog
 public class BlogResource {
     private final BlogService blogService;
 
@@ -30,12 +31,6 @@ public class BlogResource {
     public ResponseEntity<List<Blog>> getAllAnimeList() {
         List<Blog> blogs = blogService.getBlogs();
         return new ResponseEntity<>(blogs, HttpStatus.OK);
-    }
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Blog> getBlogById(@PathVariable("id") Long id) {
-        Blog blog = blogService.findBlogById(id);
-        return new ResponseEntity<>(blog, HttpStatus.OK);
     }
 
     @PostMapping("/add")
