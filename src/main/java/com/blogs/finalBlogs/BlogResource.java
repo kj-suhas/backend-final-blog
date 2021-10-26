@@ -2,9 +2,11 @@ package com.blogs.finalBlogs;
 
 import java.util.List;
 
+import com.blogs.finalBlogs.exceptions.ResourceNotFoundException;
 import com.blogs.finalBlogs.models.Blog;
 import com.blogs.finalBlogs.models.service.BlogService;
 
+import org.hibernate.annotations.Any;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +33,7 @@ public class BlogResource {
     public ResponseEntity<List<Blog>> getAllAnimeList() {
         List<Blog> blogs = blogService.getBlogs();
         return new ResponseEntity<>(blogs, HttpStatus.OK);
+        // throw new ResourceNotFoundException("This is a test to see if i can see a response entity in browser");
     }
 
     @PostMapping("/add")
@@ -48,7 +51,8 @@ public class BlogResource {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteBlog(@PathVariable("id") Long id) {
-        blogService.deleteBlog(id);
+        // blogService.findBlogById(id);
+        Void deletedResult = blogService.deleteBlog(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
